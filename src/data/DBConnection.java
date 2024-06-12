@@ -48,6 +48,16 @@ public class DBConnection {
             System.out.println(e.getMessage());
         }
     }
+    public void deleteAllData() {
+        String sql = "DELETE FROM product";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public List<URLDomain> getAllData() {
         String sql = "SELECT item_name, from_url, price, delivery, writer, want_to_buy, bought, comt, share, img_src FROM product";

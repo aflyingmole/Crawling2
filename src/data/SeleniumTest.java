@@ -6,37 +6,39 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeleniumTest {
 
-    //WebDriver
+    // WebDriver
     private WebDriver driver;
 
-    //Properties
+    // Properties
     public static final String WEB_DRIVER_ID = "webdriver.chrome.driver";
     public static final String WEB_DRIVER_PATH = "C:\\Users\\jhta\\Downloads\\Crawling2\\src\\chromedriver-win64\\chromedriver.exe";
 
-    //크롤링 할 URL
+    // URL to crawl
     private String base_url;
 
     public SeleniumTest() {
         super();
 
-        //System Property SetUp
+        // System Property SetUp
         System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
 
         ChromeOptions options = new ChromeOptions();
-        // options.addArguments("headless");
+        //options.addArguments("headless");
 
-        //Driver SetUp
+        // Driver SetUp
         driver = new ChromeDriver(options);
         base_url = "https://www.algumon.com/";
     }
 
-    public void crawl() {
+    public void crawl(String url) {
         try {
-            driver.get(base_url);
+            driver.get(url);
             WebElement outerElement = driver.findElement(By.xpath("/html/body/div[6]/div[2]/ul"));
             List<WebElement> innerElement = outerElement.findElements(By.className("post-li"));
 
@@ -69,4 +71,5 @@ public class SeleniumTest {
             driver.close();
         }
     }
-}
+
+    }
